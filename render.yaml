@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: openwhatsapp-api
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - key: SERVER_PORT
+        value: "10000"
+      - key: POSTGRES_USERS_DB
+        fromDatabase:
+          name: openwhatsapp-db
+          property: connectionString
+      - key: POSTGRES_AUTH_DB
+        fromDatabase:
+          name: openwhatsapp-db
+          property: connectionString
+      - key: DATABASE_SAVE_MESSAGES
+        value: "true"
+      - key: GLOBAL_API_KEY
+        generateValue: true
+      - key: CLIENT_NAME
+        value: evolution
+      - key: CONNECT_ON_STARTUP
+        value: "false"
+      - key: MINIO_ENABLED
+        value: "false"
+
+databases:
+  - name: openwhatsapp-db
+    databaseName: openwhatsapp
+    user: openwhatsapp
+    plan: free
