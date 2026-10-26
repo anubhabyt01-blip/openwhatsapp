@@ -1,0 +1,16 @@
+{
+  "name": "openwhatsapp-cloudflare-deploy",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "types": "wrangler types"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "wrangler": "^4.152.0"
+  },
+  "overrides": {
+    "undici": "7.30.1"
+  }
+}

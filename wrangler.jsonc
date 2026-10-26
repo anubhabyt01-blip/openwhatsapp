@@ -1,0 +1,45 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "openwhatsapp-api",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-10-26",
+  "observability": {
+    "enabled": true
+  },
+  "containers": [
+    {
+      "class_name": "OpenWhatsAppContainer",
+      "scheduling_policy": "durable_object",
+      "images": {
+        "base": {
+          "dockerfile": "./Dockerfile",
+          "build_context": "."
+        }
+      }
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "OPENWHATSAPP_CONTAINER",
+        "class_name": "OpenWhatsAppContainer"
+      }
+    ]
+  },
+  "exports": {
+    "OpenWhatsAppContainer": {
+      "type": "durable-object",
+      "storage": "sqlite"
+    }
+  },
+  "vars": {
+    "SERVER_PORT": "8080",
+    "DATABASE_SAVE_MESSAGES": "true",
+    "CLIENT_NAME": "evolution",
+    "CONNECT_ON_STARTUP": "true",
+    "MINIO_ENABLED": "false",
+    "WEBHOOK_FILES": "false",
+    "LOG_TYPE": "console",
+    "DEBUG_ENABLED": "INFO"
+  }
+}

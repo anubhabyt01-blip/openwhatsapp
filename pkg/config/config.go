@@ -178,9 +178,9 @@ func (c *Config) CreateUsersDB() (*gorm.DB, error) {
 }
 
 func (c *Config) CreateAuthDB() (*sql.DB, error) {
-	dbDSN := c.postgresUsersDB
+	dbDSN := c.PostgresAuthDB
 
-	if c.postgresUsersDB == "" {
+	if dbDSN == "" {
 		dbDSN = fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", c.PostgresHost, c.PostgresPort, c.PostgresUser, c.PostgresPassword, c.PostgresDB)
 	}
 
