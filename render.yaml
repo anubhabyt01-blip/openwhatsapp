@@ -9,6 +9,10 @@ services:
     envVars:
       - key: SERVER_PORT
         value: "10000"
+      - key: HEALTH_URL
+        value: https://openwhatsapp-khtx.onrender.com/health
+      - key: HEALTH_PING_INTERVAL
+        value: 1m
       - key: POSTGRES_USERS_DB
         fromDatabase:
           name: openwhatsapp-db

@@ -11,13 +11,14 @@ import (
 	"time"
 )
 
+const defaultHealthURL = "https://openwhatsapp-khtx.onrender.com/health"
 const defaultInterval = time.Minute
-const requestTimeout = 15 * time.Second
+const requestTimeout = 90 * time.Second
 
 func main() {
 	healthURL := strings.TrimSpace(os.Getenv("HEALTH_URL"))
 	if healthURL == "" {
-		log.Fatal("HEALTH_URL is required, for example https://your-service.onrender.com/health")
+		healthURL = defaultHealthURL
 	}
 	parsedURL, err := parseHealthURL(healthURL)
 	if err != nil {

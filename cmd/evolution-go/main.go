@@ -423,6 +423,7 @@ func main() {
 	heartbeatCtx, heartbeatCancel := context.WithCancel(context.Background())
 	defer heartbeatCancel()
 
+	startHealthPinger(heartbeatCtx, os.Getenv("HEALTH_URL"), os.Getenv("HEALTH_PING_INTERVAL"))
 	core.StartHeartbeat(heartbeatCtx, runtimeCtx, startTime)
 
 	srv := &http.Server{
