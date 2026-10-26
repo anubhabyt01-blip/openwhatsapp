@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "openwhatsapp-api",
+  "name": "openwhatsapp",
   "main": "src/worker.ts",
   "compatibility_date": "2026-10-26",
   "observability": {
